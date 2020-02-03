@@ -15,9 +15,11 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 
-@Component
+@Service
 public class InquireKiralikDaireImpl implements InquireKiralikDaire {
+public InquireKiralikDaireImpl(){
 
+}
   final static private String baseUrl="https://www.sahibinden.com/satilik-daire";
   private String totalPage;
   @Autowired

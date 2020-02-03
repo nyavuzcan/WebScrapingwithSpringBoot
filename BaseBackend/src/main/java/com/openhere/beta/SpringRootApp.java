@@ -10,7 +10,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 public class SpringRootApp extends SpringBootServletInitializer {
-	InquireKiralikDaireImpl inquireKiralikDaire = new InquireKiralikDaireImpl();
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringRootApp.class, args);
 	}
