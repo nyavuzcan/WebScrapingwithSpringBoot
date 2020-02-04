@@ -2,6 +2,8 @@ package main.java.com.openhere.sahibinden.serviceImp;
 
 
 import main.java.com.openhere.sahibinden.entity.SatilikDaireEntity;
+
+import main.java.com.openhere.sahibinden.repository.SatilikDaireRepo;
 import main.java.com.openhere.sahibinden.service.InquireKiralikDaire;
 import main.java.com.openhere.sahibinden.service.PaginationSahibinden;
 import main.java.com.openhere.sahibinden.service.SahibindenOperators;
@@ -26,10 +28,15 @@ public InquireKiralikDaireImpl(){
   PaginationSahibinden pagination;
   @Autowired
   SahibindenOperators sahibindenOperators;
-
+  @Autowired
+  SatilikDaireRepo satilikDaireRepo;
 
 @Override
 public void inquireDaireler() throws Exception {
+  SatilikDaireEntity satilikDaireEntity = new SatilikDaireEntity();
+  satilikDaireEntity.setIlanBaslik("qweqwe");
+
+  satilikDaireRepo.save(satilikDaireEntity);
   this.totalPage= pagination.getLastPage(baseUrl);
   final ArrayList<SatilikDaireEntity> satilikDaires = sahibindenOperators.inquireSatilikDaire(baseUrl,this.totalPage);
 

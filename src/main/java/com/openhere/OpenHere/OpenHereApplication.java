@@ -4,17 +4,17 @@ import main.java.com.openhere.sahibinden.service.InquireKiralikDaire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.jms.annotation.EnableJms;
-
-import javax.annotation.PostConstruct;
+import org.springframework.context.event.EventListener;
 
 @SpringBootApplication
 @ComponentScan("main.java.com.openhere")
-@EnableJms
+@EntityScan("main.java.com.openhere.sahibinden.entity")
 public class OpenHereApplication extends SpringBootServletInitializer {
 
 	@Autowired
@@ -25,10 +25,19 @@ public class OpenHereApplication extends SpringBootServletInitializer {
 		return application.sources(OpenHereApplication.class);
 	}
 
-	@PostConstruct
-	public void listen() throws Exception {
+	//RUN AFTER SPRING BOOT START
+	@EventListener(ApplicationReadyEvent.class)
+	public void doSomethingAfterStartup() throws Exception {
+
+
 		inquireKiralikDaire.inquireDaireler();
 	}
+
+	//RUN METHOD BEFORE SPRING BOOT START
+	/*@PostConstruct
+	public void listen() throws Exception {
+
+	}*/
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(OpenHereApplication.class, args);

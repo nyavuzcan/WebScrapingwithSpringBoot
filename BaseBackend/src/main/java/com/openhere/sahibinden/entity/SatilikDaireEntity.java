@@ -1,12 +1,26 @@
 package main.java.com.openhere.sahibinden.entity;
 
+import org.springframework.data.annotation.Id;
+
 public class SatilikDaireEntity {
+
+  @Id
+  private String id;
   private String ilanBaslik;
   private String ilanAlan;
   private String ilanOdaSayisi;
   private String ilanIlanFiyat;
   private String ilanTarihi;
   private String ilanIlIlce;
+
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
   public String getIlanBaslik() {
     return ilanBaslik;
