@@ -1,9 +1,10 @@
 package main.java.com.openhere.sahibinden.entity;
 
+import main.java.com.openhere.sahibinden.RequestStructures.SatilikDaireDetay;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "KiralikDaire")
+@Document(collection = "SatilikDaire")
 public class SatilikDaireEntity {
 
   @Id
@@ -14,6 +15,8 @@ public class SatilikDaireEntity {
   private String ilanIlanFiyat;
   private String ilanTarihi;
   private String ilanIlIlce;
+  private String ilanDetayLink;
+  private SatilikDaireDetay satilikDaireDetay;
 
 
   public String getId() {
@@ -70,6 +73,22 @@ public class SatilikDaireEntity {
 
   public void setIlanIlIlce(String ilanIlIlce) {
     this.ilanIlIlce = ilanIlIlce;
+  }
+
+  public SatilikDaireDetay getSatilikDaireDetay() {
+    return satilikDaireDetay;
+  }
+
+  public void setSatilikDaireDetay(SatilikDaireDetay satilikDaireDetay) {
+    this.satilikDaireDetay = satilikDaireDetay;
+  }
+
+  public String getIlanDetayLink() {
+    return ilanDetayLink;
+  }
+
+  public void setIlanDetayLink(String ilanDetayLink) {
+    this.ilanDetayLink = ilanDetayLink;
   }
 
 }

@@ -1,14 +1,10 @@
 package main.java.com.openhere.beta;
 
-import com.openhere.OpenHere.OpenHereApplication;
-import main.java.com.openhere.sahibinden.repository.SatilikDaireRepo;
-import main.java.com.openhere.sahibinden.service.InquireKiralikDaire;
-import main.java.com.openhere.sahibinden.serviceImp.InquireKiralikDaireImpl;
+import main.java.com.openhere.sahibinden.service.InquireSatilikDaire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,7 +20,7 @@ import javax.annotation.PostConstruct;
 public class SpringRootApp extends SpringBootServletInitializer {
 
 	@Autowired
-	private InquireKiralikDaire inquireKiralikDaire;
+	private InquireSatilikDaire inquireSatilikDaire;
 
 
 	@PostConstruct
@@ -38,7 +34,7 @@ public class SpringRootApp extends SpringBootServletInitializer {
 		public void doSomethingAfterStartup() throws Exception {
 
 
-			inquireKiralikDaire.inquireDaireler();
+			inquireSatilikDaire.inquireDaireler();
 		}
 
 		//RUN METHOD BEFORE SPRING BOOT START

@@ -1,6 +1,6 @@
 package com.openhere.OpenHere;
 
-import main.java.com.openhere.sahibinden.service.InquireKiralikDaire;
+import main.java.com.openhere.sahibinden.service.InquireSatilikDaire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +18,7 @@ import org.springframework.context.event.EventListener;
 public class OpenHereApplication extends SpringBootServletInitializer {
 
 	@Autowired
-	private InquireKiralikDaire inquireKiralikDaire;
+	private InquireSatilikDaire inquireSatilikDaire;
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -30,7 +30,8 @@ public class OpenHereApplication extends SpringBootServletInitializer {
 	public void doSomethingAfterStartup() throws Exception {
 
 
-		inquireKiralikDaire.inquireDaireler();
+		inquireSatilikDaire.inquireDaireler();
+
 	}
 
 	//RUN METHOD BEFORE SPRING BOOT START
