@@ -33,13 +33,11 @@ public InquireKiralikDaireImpl(){
 
 @Override
 public void inquireDaireler() throws Exception {
-  SatilikDaireEntity satilikDaireEntity = new SatilikDaireEntity();
-  satilikDaireEntity.setIlanBaslik("qweqwe");
 
-  satilikDaireRepo.save(satilikDaireEntity);
+
   this.totalPage= pagination.getLastPage(baseUrl);
   final ArrayList<SatilikDaireEntity> satilikDaires = sahibindenOperators.inquireSatilikDaire(baseUrl,this.totalPage);
-
+  satilikDaireRepo.saveAll(satilikDaires);
   for (SatilikDaireEntity satilikDaire : satilikDaires){
 
     System.out.println(satilikDaire.getIlanBaslik());
