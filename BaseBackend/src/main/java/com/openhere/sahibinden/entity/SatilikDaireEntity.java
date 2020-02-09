@@ -4,7 +4,7 @@ import main.java.com.openhere.sahibinden.RequestStructures.SatilikDaireDetay;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "SatilikDaire")
+@Document(collection = "KiralikDaire")
 public class SatilikDaireEntity {
 
   @Id

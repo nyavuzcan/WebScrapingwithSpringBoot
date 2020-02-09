@@ -28,14 +28,14 @@ public class SpringRootApp extends SpringBootServletInitializer {
 
 
 
+		inquireSatilikDaire.inquireDaireler();
 	}
 		//RUN AFTER SPRING BOOT START
-		@EventListener(ApplicationReadyEvent.class)
+	/*	@EventListener(ApplicationReadyEvent.class)
 		public void doSomethingAfterStartup() throws Exception {
 
 
-			inquireSatilikDaire.inquireDaireler();
-		}
+		}*/
 
 		//RUN METHOD BEFORE SPRING BOOT START
 	/*@PostConstruct

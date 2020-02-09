@@ -1,3 +1,4 @@
+/*
 package com.openhere.OpenHere;
 
 import main.java.com.openhere.sahibinden.service.InquireSatilikDaire;
@@ -35,13 +36,15 @@ public class OpenHereApplication extends SpringBootServletInitializer {
 	}
 
 	//RUN METHOD BEFORE SPRING BOOT START
-	/*@PostConstruct
+	*/
+/*@PostConstruct
 	public void listen() throws Exception {
 
-	}*/
+	}*//*
+
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(OpenHereApplication.class, args);
 		//LogService.info(Application.class.getName(), "Service Started...");
 	}
-}
+}*/

@@ -12,11 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class InquireSatilikDaireImpl implements InquireSatilikDaire {
 
-  final static private String baseUrl="https://www.sahibinden.com/satilik-daire";
+  final static private String baseUrl="https://www.sahibinden.com/kiralik-daire";
   private String totalPage;
   @Autowired
   PaginationSahibinden pagination;
@@ -30,10 +31,11 @@ public void inquireDaireler() throws Exception {
 
 
   this.totalPage= pagination.getLastPage(baseUrl);
-  final ArrayList<SatilikDaireEntity> satilikDaires = sahibindenOperators.inquireSatilikDaire(baseUrl,this.totalPage);
-       //satilikDaireRepo.saveAll(satilikDaires);
-
+  final List<SatilikDaireEntity> satilikDaires = sahibindenOperators.inquireSatilikDaire(baseUrl,this.totalPage);
   System.out.println("finish");
+  satilikDaireRepo.saveAll(satilikDaires);
+
+
 
 
 
