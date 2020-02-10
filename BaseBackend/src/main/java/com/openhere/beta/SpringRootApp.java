@@ -27,8 +27,8 @@ public class SpringRootApp extends SpringBootServletInitializer {
 	public void listen() throws Exception {
 
 
-
-		inquireSatilikDaire.inquireDaireler();
+inquireSatilikDaire.inquireDairelerLinks();
+		//inquireSatilikDaire.inquireDaireler();
 	}
 		//RUN AFTER SPRING BOOT START
 	/*	@EventListener(ApplicationReadyEvent.class)

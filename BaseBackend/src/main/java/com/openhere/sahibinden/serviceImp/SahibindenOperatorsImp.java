@@ -81,8 +81,6 @@ public class SahibindenOperatorsImp implements SahibindenOperators {
       int temp = (i * 20) - 20;
       String agent= this.inquireAgent();
 
-      int count = 0;
-      int maxTries = 300;
       while(true) {
         try {
           Document doc = Jsoup.connect(baseUrl + "?pagingOffset=" + temp).userAgent(agent).get();
