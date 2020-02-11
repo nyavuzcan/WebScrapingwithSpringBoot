@@ -1,7 +1,9 @@
 package main.java.com.openhere.sahibinden.serviceImp;
 
+import main.java.com.openhere.sahibinden.RequestStructures.KordinatRequest;
 import main.java.com.openhere.sahibinden.RequestStructures.SatilikDaireDetay;
 import main.java.com.openhere.sahibinden.entity.SatilikDaireEntity;
+import main.java.com.openhere.sahibinden.entity.SatilikDaireİstanbulEntity;
 import main.java.com.openhere.sahibinden.repository.SatilikDaireRepo;
 import main.java.com.openhere.sahibinden.service.SahibindenOperators;
 import org.jsoup.HttpStatusException;
@@ -47,7 +49,8 @@ public class SahibindenOperatorsImp implements SahibindenOperators {
     agentList.add(agent8);
     agentList.add(agent9);
 
-    return agentList.get(sayi);
+  //  return agentList.get(sayi);
+    return "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36";
   }
 
   @Override
@@ -86,7 +89,7 @@ public class SahibindenOperatorsImp implements SahibindenOperators {
           Document doc = Jsoup.connect(baseUrl + "?pagingOffset=" + temp).userAgent(agent).get();
           Elements titleElements = doc.select("tbody.searchResultsRowClass > tr.searchResultsItem > td");
           SatilikDaireDetay satilikDaireDetay = new SatilikDaireDetay();
-          SatilikDaireEntity satilikDaire = new SatilikDaireEntity();
+          SatilikDaireİstanbulEntity satilikDaire = new SatilikDaireİstanbulEntity();
           for (Element element : titleElements) {
 
             if (!element.getElementsByClass("searchResultsLargeThumbnail").isEmpty()) {
@@ -123,7 +126,7 @@ public class SahibindenOperatorsImp implements SahibindenOperators {
               satilikDaireRepo.save(satilikDaire);
               satilikDaires.add(satilikDaire);
 
-              satilikDaire = new SatilikDaireEntity();
+              satilikDaire = new SatilikDaireİstanbulEntity();
 
               /*
                */
@@ -188,6 +191,7 @@ public class SahibindenOperatorsImp implements SahibindenOperators {
 
         SatilikDaireDetay satilikDaireDetay = new SatilikDaireDetay();
 
+        satilikDaireDetay.setKordinatRequest(new KordinatRequest(doc.getElementById("gmap").attr("data-lat"),doc.getElementById("gmap").attr("data-lon")));
         for (Element element : childelements) {
 
           String txt = element.select("span").text();

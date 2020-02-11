@@ -35,7 +35,7 @@ public void inquireDaireler() throws Exception {
 
 
   this.totalPage= pagination.getLastPage(baseUrl);
-  //final List<SatilikDaireEntity> satilikDaires = sahibindenOperators.inquireSatilikDaire(baseUrl,this.totalPage);
+  final List<SatilikDaireEntity> satilikDaires = sahibindenOperators.inquireSatilikDaire(baseUrl,this.totalPage);
   System.out.println("finish");
   //satilikDaireRepo.saveAll(satilikDaires);
 
