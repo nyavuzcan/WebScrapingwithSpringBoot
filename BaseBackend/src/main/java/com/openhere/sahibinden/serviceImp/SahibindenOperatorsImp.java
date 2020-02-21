@@ -1,5 +1,7 @@
 package main.java.com.openhere.sahibinden.serviceImp;
 
+import com.jaunt.ResponseException;
+import com.jaunt.UserAgent;
 import main.java.com.openhere.sahibinden.RequestStructures.KordinatRequest;
 import main.java.com.openhere.sahibinden.RequestStructures.SatilikDaireDetay;
 import main.java.com.openhere.sahibinden.entity.SatilikDaireEntity;
@@ -93,13 +95,21 @@ public class SahibindenOperatorsImp implements SahibindenOperators {
           for (Element element : titleElements) {
 
             if (!element.getElementsByClass("searchResultsLargeThumbnail").isEmpty()) {
-              Document document = Jsoup.connect(SahibindenOperatorsImp.baseUrl + element.children().attr("href")).userAgent(agent).get();
-              String detayAciklama = inquireSatilikDaireDetayAciklama(document);
-            List<String> satilikDaireOzelliklerlist = inquireSatilikDaireDetayAciklamaOzellikler(document);
+              UserAgent userAgent = new UserAgent();                       //create new userAgent (headless browser).
+              try {
+                userAgent.visit("https://www.sahibinden.com/ilan/emlak-konut-kiralik-dia-gayrimenkul-den-folkart-time-1-plus0-genis-balkonlu-kiralik-781968922/detay");                        //visit a url
+              } catch (ResponseException e) {
+                e.printStackTrace();
+              }
+             Document dc= Jsoup.parse(userAgent.doc.innerHTML());
+
+            //  Document document = Jsoup.connect(SahibindenOperatorsImp.baseUrl + element.children().attr("href")).userAgent(agent).get();
+              String detayAciklama = inquireSatilikDaireDetayAciklama(dc);
+            List<String> satilikDaireOzelliklerlist = inquireSatilikDaireDetayAciklamaOzellikler(dc);
 
               satilikDaire.setIlanDetayLink(SahibindenOperatorsImp.baseUrl + element.children().attr("href"));
 
-              satilikDaireDetay = inquireSatilikDaireDetay(document);
+              satilikDaireDetay = inquireSatilikDaireDetay(dc);
 
               satilikDaireDetay.setIlanDetayOzellikleri(satilikDaireOzelliklerlist);
               satilikDaireDetay.setIlanAciklama(detayAciklama);

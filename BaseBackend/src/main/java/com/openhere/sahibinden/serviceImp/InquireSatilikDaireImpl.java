@@ -47,4 +47,9 @@ public void inquireDaireler() throws Exception {
   inquireDaireLink.InquireDaireLinkAll("https://www.sahibinden.com/satilik");
 
   }
+
+  @Override
+  public void inquireSahibindenLink() {
+
+  }
 }

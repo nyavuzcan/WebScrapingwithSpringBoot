@@ -4,4 +4,5 @@ public interface InquireSatilikDaire {
 
   void inquireDairelerLinks();
   void inquireDaireler() throws Exception;
+  void inquireSahibindenLink();
 }
