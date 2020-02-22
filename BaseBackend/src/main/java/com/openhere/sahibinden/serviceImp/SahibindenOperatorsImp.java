@@ -70,11 +70,14 @@ public class SahibindenOperatorsImp implements SahibindenOperators {
   }
 
   @Override
-  public List<SatilikDaireEntity> inquireSatilikDaire(String baseUrl, String totalPage) throws IOException {
+  public List<SatilikDaireEntity> inquireSatilikDaire(String baseUrl, String totalPage) {
     final ArrayList<SatilikDaireEntity> satilikDaires = new ArrayList<>();
 
     int temptotalPage = Integer.parseInt(totalPage);
+
     temptotalPage++;
+    if (temptotalPage==1)
+      temptotalPage=2;
     for (int i = 1; i < temptotalPage; i++) {
     /*  try {
         int sayi = (int)(Math.random()*120);
@@ -96,11 +99,9 @@ public class SahibindenOperatorsImp implements SahibindenOperators {
 
             if (!element.getElementsByClass("searchResultsLargeThumbnail").isEmpty()) {
               UserAgent userAgent = new UserAgent();                       //create new userAgent (headless browser).
-              try {
-                userAgent.visit("https://www.sahibinden.com/ilan/emlak-konut-kiralik-dia-gayrimenkul-den-folkart-time-1-plus0-genis-balkonlu-kiralik-781968922/detay");                        //visit a url
-              } catch (ResponseException e) {
-                e.printStackTrace();
-              }
+
+                userAgent.visit(this.baseUrl+element.children().attr("href"));
+                //visit a url
              Document dc= Jsoup.parse(userAgent.doc.innerHTML());
 
             //  Document document = Jsoup.connect(SahibindenOperatorsImp.baseUrl + element.children().attr("href")).userAgent(agent).get();
@@ -148,7 +149,7 @@ public class SahibindenOperatorsImp implements SahibindenOperators {
 
         }
 
-        catch (HttpStatusException | UnknownHostException e) {
+        catch (ResponseException | IOException e ) {
           try {
             int sayi = (int)(Math.random()*120);
             sayi+=60;
@@ -156,7 +157,13 @@ public class SahibindenOperatorsImp implements SahibindenOperators {
           } catch (InterruptedException ex) {
             ex.printStackTrace();
           }
-          if (false) throw e;
+          if (false) try {
+            throw e;
+          } catch (ResponseException ex) {
+            ex.printStackTrace();
+          } catch (IOException ex) {
+            ex.printStackTrace();
+          }
         }
       }
 

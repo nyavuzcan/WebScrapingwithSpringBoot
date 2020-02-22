@@ -29,8 +29,8 @@ public class SpringRootApp extends SpringBootServletInitializer {
 
 //inquireSatilikDaire.inquireDairelerLinks();
 
-			inquireSatilikDaire.inquireSahibindenLink();
-	//	inquireSatilikDaire.inquireDaireler();
+		//	inquireSatilikDaire.inquireSahibindenLink();
+		inquireSatilikDaire.inquireDaireler();
 	}
 		//RUN AFTER SPRING BOOT START
 	/*	@EventListener(ApplicationReadyEvent.class)

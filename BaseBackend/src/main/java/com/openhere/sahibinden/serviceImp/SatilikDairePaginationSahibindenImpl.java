@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -29,7 +30,10 @@ public class SatilikDairePaginationSahibindenImpl implements PaginationSahibinde
         Document doc = Jsoup.connect(baseUrl).get();
         Elements titleElements = doc.select("ul.pageNaviButtons > li");
 
+        if (titleElements.size()==0)
+          return "0";
         int temp = titleElements.last().elementSiblingIndex();
+
         Element element =  titleElements.get(temp-1);
 
         return element.text();

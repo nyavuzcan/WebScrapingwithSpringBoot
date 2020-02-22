@@ -1,13 +1,12 @@
 package main.java.com.openhere.sahibinden.serviceImp;
 
 
+import main.java.com.openhere.sahibinden.entity.SahibindenLinkEntity;
 import main.java.com.openhere.sahibinden.entity.SatilikDaireEntity;
 
+import main.java.com.openhere.sahibinden.repository.KiralikDaireLink;
 import main.java.com.openhere.sahibinden.repository.SatilikDaireRepo;
-import main.java.com.openhere.sahibinden.service.InquireDaireLink;
-import main.java.com.openhere.sahibinden.service.InquireSatilikDaire;
-import main.java.com.openhere.sahibinden.service.PaginationSahibinden;
-import main.java.com.openhere.sahibinden.service.SahibindenOperators;
+import main.java.com.openhere.sahibinden.service.*;
 
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,10 @@ import java.util.List;
 
 @Service
 public class InquireSatilikDaireImpl implements InquireSatilikDaire {
-
-  final static private String baseUrl="https://www.sahibinden.com/kiralik-daire";
   private String totalPage;
+
+  @Autowired
+  KiralikDaireLink kiralikDaireLink;
   @Autowired
   PaginationSahibinden pagination;
   @Autowired
@@ -29,14 +29,19 @@ public class InquireSatilikDaireImpl implements InquireSatilikDaire {
   SatilikDaireRepo satilikDaireRepo;
   @Autowired
   InquireDaireLink inquireDaireLink;
+  @Autowired
+  LinkOperators linkOperators;
+
 
 @Override
 public void inquireDaireler() throws Exception {
+ final List<SahibindenLinkEntity> satilikDaireEntities = kiralikDaireLink.findAllByLinkIsNotNull();
+  for(SahibindenLinkEntity dairelink : satilikDaireEntities){
+    this.totalPage= pagination.getLastPage(dairelink.getLink());
+    final List<SatilikDaireEntity> satilikDaires = sahibindenOperators.inquireSatilikDaire(dairelink.getLink(),this.totalPage);
+    System.out.println("finish");
+  }
 
-
-  this.totalPage= pagination.getLastPage(baseUrl);
-  final List<SatilikDaireEntity> satilikDaires = sahibindenOperators.inquireSatilikDaire(baseUrl,this.totalPage);
-  System.out.println("finish");
   //satilikDaireRepo.saveAll(satilikDaires);
 
 
@@ -49,7 +54,7 @@ public void inquireDaireler() throws Exception {
   }
 
   @Override
-  public void inquireSahibindenLink() {
-
+  public void inquireSahibindenLink() throws InterruptedException {
+    linkOperators.inquiereSahibindenLink();
   }
 }
