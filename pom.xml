@@ -24,6 +24,11 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>2.2.4.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.htmlunit</groupId>
+			<artifactId>htmlunit</artifactId>
+			<version>2.37.0</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/javax.jms/com.springsource.javax.jms -->
 		<!--<dependency>
