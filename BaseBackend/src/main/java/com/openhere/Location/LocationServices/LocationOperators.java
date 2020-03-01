@@ -1,5 +1,6 @@
 package main.java.com.openhere.Location.LocationServices;
 
+import com.jaunt.ResponseException;
 import main.java.com.openhere.sahibinden.RequestStructures.KordinatRequest;
 import main.java.com.openhere.sahibinden.Responses.AddressResponse;
 import org.springframework.http.ResponseEntity;
@@ -9,5 +10,5 @@ import java.io.IOException;
 
 @Service
 public interface LocationOperators {
-  ResponseEntity<AddressResponse> inquireAddressFromGoogleFree(KordinatRequest kordinatRequest) throws IOException;
+  ResponseEntity<AddressResponse> inquireAddressFromGoogleFree(KordinatRequest kordinatRequest) throws IOException, ResponseException;
 }
