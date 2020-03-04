@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping(value = "/openhere/sahibinden")
 public class SahibindenController {
@@ -16,7 +18,7 @@ public class SahibindenController {
   private SahibindenDukkanOperators sahibindenDukkanOperators;
 
   @GetMapping(value = "/inquireDevrenKiralikDukkanlar")
-  public ResponseEntity<SahibindenDevrenSatilikDukkan> devrenSatilikDukkanResponse(){
+  public ResponseEntity<SahibindenDevrenSatilikDukkan> devrenSatilikDukkanResponse() throws IOException {
     sahibindenDukkanOperators.inquireSahibindenDevrenSatilikDukkan();
     return null;
   }
