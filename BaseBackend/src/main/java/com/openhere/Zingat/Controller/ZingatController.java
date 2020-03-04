@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
+@RestController
+@RequestMapping(value = "/zingat")
+
 public class ZingatController {
 
-  @RestController
-  @RequestMapping(value = "/zingat")
-  public class LocationController {
     @Autowired
     ZingatOperators zingatOperators;
-    @GetMapping(value = "/dukkan", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void  inquireZingatKiralikDukkan(){
+    @GetMapping(value = "/dukkan")
+    public void  inquireZingatKiralikDukkan() throws IOException {
        zingatOperators.saveKiralikDukkan();
     }
 
 
   }
 
-}
+

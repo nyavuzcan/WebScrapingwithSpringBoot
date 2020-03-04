@@ -14,9 +14,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication
-@EntityScan("main.java.com.openhere.sahibinden.entity")
-@ComponentScan("main.java.com.openhere")
-@EnableMongoRepositories("main.java.com.openhere.sahibinden.repository")
+@EntityScan("main.java.com.*")
+@ComponentScan("main.java.com.*")
+@EnableMongoRepositories("main.java.com.*")
 public class SpringRootApp extends SpringBootServletInitializer {
 
 	@Autowired

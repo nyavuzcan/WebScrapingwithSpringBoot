@@ -1,6 +1,8 @@
 package main.java.com.openhere.sahibinden.serviceImp;
 
 
+import com.jaunt.ResponseException;
+import com.jaunt.UserAgent;
 import main.java.com.openhere.sahibinden.service.PaginationSahibinden;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
@@ -27,7 +29,11 @@ public class SatilikDairePaginationSahibindenImpl implements PaginationSahibinde
     int maxTries = 300;
     while(true) {
       try {
-        Document doc = Jsoup.connect(baseUrl).get();
+        UserAgent userAgent = new UserAgent();                       //create new userAgent (headless browser).
+
+        userAgent.visit(baseUrl);
+        Document doc= Jsoup.parse(userAgent.doc.innerHTML());
+
         Elements titleElements = doc.select("ul.pageNaviButtons > li");
 
         if (titleElements.size()==0)
@@ -37,7 +43,7 @@ public class SatilikDairePaginationSahibindenImpl implements PaginationSahibinde
         Element element =  titleElements.get(temp-1);
 
         return element.text();
-      } catch (HttpStatusException | UnknownHostException e) {
+      } catch (ResponseException e) {
         try {
           int sayi = (int)(Math.random()*120);
           sayi+=60;
@@ -45,7 +51,17 @@ public class SatilikDairePaginationSahibindenImpl implements PaginationSahibinde
         } catch (InterruptedException ex) {
           ex.printStackTrace();
         }
-        if (false) throw e;
+        if (false) try {
+          throw e;
+        } catch (ResponseException ex) {
+          int sayi = (int)(Math.random()*120);
+          sayi+=60;
+          try {
+            TimeUnit.SECONDS.sleep(sayi);
+          } catch (InterruptedException exc) {
+            exc.printStackTrace();
+          }
+        }
       }
     }
 
