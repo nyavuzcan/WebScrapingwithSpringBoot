@@ -42,6 +42,7 @@ public class ZingatKiralikDukkanImpl implements ZingatKiralikDukkanService {
     Integer totalPage;
     List<Link> linkList = inquireZingatLink();
     for (Link link : linkList){
+    if(Objects.nonNull(link.getLink().replace("page=1&","")))  link.getLink().replace("page=1&","");
     totalPage =  getTotalpage(link);
     if (Objects.isNull(totalPage)) continue;
       for (int i = 1 ; i<= totalPage ; i++){

@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 
-@Document(collection = "ZingatKiralikDukkanLink")
+@Document(collection = "ZingatSatilikDukkanLink")
 public class Link {
   private String link;
   private String ilce;
