@@ -26,6 +26,15 @@ public class SatilikDaireDetay {
   private String Takas;
   private List<String> ilanDetayOzellikleri;
   private String ilanAciklama;
+  private KordinatRequest kordinatRequest;
+
+  public KordinatRequest getKordinatRequest() {
+    return kordinatRequest;
+  }
+
+  public void setKordinatRequest(KordinatRequest kordinatRequest) {
+    this.kordinatRequest = kordinatRequest;
+  }
 
   public String getIlanTarih() {
     return ilanTarih;

@@ -14,9 +14,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication
-@EntityScan("main.java.com.openhere.sahibinden.entity")
-@ComponentScan("main.java.com.openhere")
-@EnableMongoRepositories("main.java.com.openhere.sahibinden.repository")
+@EntityScan("main.java.com.*")
+@ComponentScan("main.java.com.*")
+@EnableMongoRepositories("main.java.com.*")
 public class SpringRootApp extends SpringBootServletInitializer {
 
 	@Autowired
@@ -27,15 +27,17 @@ public class SpringRootApp extends SpringBootServletInitializer {
 	public void listen() throws Exception {
 
 
+//inquireSatilikDaire.inquireDairelerLinks();
 
+		//	inquireSatilikDaire.inquireSahibindenLink();
+	//	inquireSatilikDaire.inquireDaireler();
 	}
 		//RUN AFTER SPRING BOOT START
-		@EventListener(ApplicationReadyEvent.class)
+	/*	@EventListener(ApplicationReadyEvent.class)
 		public void doSomethingAfterStartup() throws Exception {
 
 
-			inquireSatilikDaire.inquireDaireler();
-		}
+		}*/
 
 		//RUN METHOD BEFORE SPRING BOOT START
 	/*@PostConstruct
